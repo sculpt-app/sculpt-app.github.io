@@ -1,92 +1,53 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f6f2">
-  <title>Sculpt — Make progress your own.</title>
-  <meta name="description" content="Fitness with intention. Set your goals, build your routine, and follow your progress with Sculpt. Coming soon on iOS.">
-  <meta property="og:title" content="Sculpt — Make progress your own.">
-  <meta property="og:description" content="Your goals. Your routine. Your progress. Coming soon on iOS.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sculpt-app.github.io/">
-  <meta property="og:image" content="https://sculpt-app.github.io/assets/social-card.png">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f8f5">
+  <title>Sculpt — An everyday masterpiece.</title>
+  <meta name="description" content="Fitness, thoughtfully shaped. Set your goals, build your routine, and follow your progress. Sculpt is coming soon on iOS.">
+  <meta property="og:title" content="Sculpt — An everyday masterpiece."><meta property="og:description" content="Fitness, thoughtfully shaped. Coming soon on iOS."><meta property="og:type" content="website"><meta property="og:image" content="https://sculpt-app.github.io/assets/social-card.jpg">
   <link rel="canonical" href="https://sculpt-app.github.io/">
+  <meta property="og:url" content="https://sculpt-app.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <script src="site.js" defer></script>
+  <script src="assets/phone.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header wrap">
-    <a class="wordmark" href="./" aria-label="Sculpt home">sculpt<span class="brand-period">.</span></a>
-    <nav aria-label="Main navigation">
-      <a href="#app">The app</a>
-      <a href="#approach">The approach</a>
-      <a href="support.html">Support <span aria-hidden="true">↗</span></a>
-    </nav>
-    <span class="launch-status"><span class="status-dot" aria-hidden="true"></span> Coming soon on iOS</span>
+  <header class="header frame">
+    <a class="wordmark" href="./" aria-label="Sculpt home">sculpt.</a>
+    <nav aria-label="Main navigation"><a href="#practice">The practice</a><a href="#philosophy">Our philosophy</a><a href="support.html">Support <span aria-hidden="true">↗</span></a></nav>
+    <a class="header-launch" href="#launch">Coming soon <span aria-hidden="true">↗</span></a>
   </header>
   <main id="main">
-    <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="short-rule" aria-hidden="true"></span> FITNESS, WITH INTENTION</p>
-        <h1 id="hero-title">Make progress<br><em>your own.</em></h1>
-        <p class="hero-description">A clearer view of where you are.<br>A routine for where you want to go.</p>
-        <a class="button button-dark" href="#app">Meet Sculpt <span aria-hidden="true">↗</span></a>
-        <p class="availability">For iPhone. For your next chapter.</p>
+    <section class="hero frame" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="overline">FITNESS, THOUGHTFULLY SHAPED</p><h1 id="hero-title">An everyday<br><em>masterpiece.</em></h1><p class="hero-description">Set your goals. Build your routine.<br>Make progress your own.</p><a class="button" href="#practice">Discover Sculpt <span aria-hidden="true">↗</span></a><span class="ios-note"><span class="dot" aria-hidden="true"></span> COMING SOON ON iOS</span><div class="hero-footnote"><span class="fine-rule" aria-hidden="true"></span><p>A little intention.<br>A little progress. Every day.</p></div></div>
+      <figure class="phone-scene" data-render="loading" data-motion="loading" aria-label="A rotating 3D iPhone displaying Sculpt's home screen with synthetic demonstration data">
+        <div class="phone-shadow" aria-hidden="true"></div>
+        <div class="phone-fallback"><img src="assets/home-screen.webp" width="1206" height="2622" alt="Sculpt's real home screen showing its interactive body model, with synthetic demonstration data" fetchpriority="high"></div>
+        <div id="phone-stage" class="phone-stage" aria-hidden="true"></div>
+        <div class="phone-caption"><figcaption>SCULPT, AT A GLANCE <span>Demo data</span></figcaption><button id="motion-toggle" type="button" aria-label="Pause phone rotation" aria-pressed="true" hidden><span class="motion-symbol" aria-hidden="true">Ⅱ</span><span class="motion-label">Motion on</span></button></div>
+      </figure>
+    </section>
+    <div class="chapter-line frame"><span>BUILT AROUND YOU</span><span>GOALS &nbsp; / &nbsp; ROUTINE &nbsp; / &nbsp; PROGRESS</span><a href="#practice" aria-label="Explore the practice"><span aria-hidden="true">↓</span></a></div>
+    <section class="practice frame" id="practice" aria-labelledby="practice-title">
+      <div class="section-heading"><p class="overline">01 — THE PRACTICE</p><h2 id="practice-title">A clearer direction.<br><em>A more personal routine.</em></h2><p>The tools to connect where you are<br>with where you want to go.</p></div>
+      <div class="practice-grid" role="tablist" aria-label="Explore Sculpt">
+        <button type="button" class="practice-tab" id="goals-tab" role="tab" aria-selected="true" aria-controls="goals-panel" tabindex="0"><span class="item-no">01</span><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="13"/><circle cx="20" cy="20" r="6"/><path d="M20 3v8M20 29v8M3 20h8M29 20h8"/></svg><span class="tab-title">Define your direction.</span><span class="tab-subtitle">Goals that start with you.</span><span class="tab-plus" aria-hidden="true">↗</span></button>
+        <button type="button" class="practice-tab" id="routine-tab" role="tab" aria-selected="false" aria-controls="routine-panel" tabindex="-1"><span class="item-no">02</span><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M5 12v16M10 8v24M30 8v24M35 12v16M10 20h20"/></svg><span class="tab-title">Give the work purpose.</span><span class="tab-subtitle">A routine around your life.</span><span class="tab-plus" aria-hidden="true">↗</span></button>
+        <button type="button" class="practice-tab" id="progress-tab" role="tab" aria-selected="false" aria-controls="progress-panel" tabindex="-1"><span class="item-no">03</span><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M6 30V10M6 30h28M12 24l7-7 6 3 9-12"/><path d="M27 8h7v7"/></svg><span class="tab-title">See the bigger picture.</span><span class="tab-subtitle">Progress you can look back on.</span><span class="tab-plus" aria-hidden="true">↗</span></button>
       </div>
-      <div class="hero-visual">
-        <div class="visual-caption"><span>DESIGNED AROUND YOU</span><span>01 / 03</span></div>
-        <div class="phone" aria-label="Illustrative Sculpt goals screen">
-          <div class="phone-island" aria-hidden="true"></div>
-          <div class="phone-content">
-            <div class="phone-top"><span class="phone-wordmark">sculpt.</span><span class="avatar" aria-hidden="true">J</span></div>
-            <p class="phone-eyebrow">YOUR NEXT CHAPTER</p>
-            <h2>Your goals.</h2>
-            <div class="model-stage">
-              <span class="model-label">Athletic</span>
-              <img src="assets/body-goal.webp" width="600" height="800" alt="A faceted gray body model illustrating the body-goal selection in Sculpt" fetchpriority="high">
-              <span class="model-floor" aria-hidden="true"></span>
-            </div>
-            <div class="goal-summary"><div><span>Starting point</span><strong>185 <small>lb</small></strong></div><span class="summary-arrow" aria-hidden="true">→</span><div><span>Target weight</span><strong>175 <small>lb</small></strong></div></div>
-            <div class="phone-bottom" aria-hidden="true"><span>Overview</span><span class="active">Goals</span><span>Routine</span></div>
-          </div>
-        </div>
-        <p class="preview-note">Product concept · Illustrative data</p>
+      <div class="practice-panels">
+        <section id="goals-panel" class="practice-panel" role="tabpanel" aria-labelledby="goals-tab" tabindex="0"><div class="panel-description"><p class="overline">YOUR GOALS</p><h3>Personal, from<br><em>the beginning.</em></h3><p>Choose a body goal, set your target weight, and select your focus areas. Give your training a direction that feels like yours.</p></div><div class="sample sample-goals"><span class="sample-caption">A GLIMPSE INSIDE SCULPT</span><div><span>Body goal</span><strong>Athletic</strong></div><div><span>Target weight</span><strong>175 <small>lb</small></strong></div><div><span>Focus areas</span><strong>Chest · Shoulders</strong></div><span class="sample-note">Illustrative settings</span></div></section>
+        <section id="routine-panel" class="practice-panel" role="tabpanel" aria-labelledby="routine-tab" tabindex="0" hidden><div class="panel-description"><p class="overline">YOUR ROUTINE</p><h3>A little structure.<br><em>Every session.</em></h3><p>Build a routine around your training days and focus muscles. Keep your exercises and weights together, ready for your next session.</p></div><div class="sample sample-routine"><span class="sample-caption">A GLIMPSE INSIDE SCULPT</span><div class="sample-week"><span>M</span><span class="train">T</span><span>W</span><span class="train">T</span><span>F</span><span class="train">S</span><span>S</span></div><div><span>Today's focus</span><strong>Upper body</strong></div><div><span>First exercise</span><strong>Incline press</strong></div><span class="sample-note">Illustrative routine</span></div></section>
+        <section id="progress-panel" class="practice-panel" role="tabpanel" aria-labelledby="progress-tab" tabindex="0" hidden><div class="panel-description"><p class="overline">YOUR PROGRESS</p><h3>Small steps.<br><em>A bigger picture.</em></h3><p>Follow your weight history and saved scan insights over time. Keep a record of your work as you move toward your goals.</p></div><div class="sample sample-progress"><span class="sample-caption">A GLIMPSE INSIDE SCULPT</span><div><span>Weight history</span><strong>8 weeks</strong></div><svg viewBox="0 0 360 95" role="img" aria-label="Illustrative weight trend, not a promised result"><path class="graph-grid" d="M0 15H360M0 48H360M0 80H360"/><path class="graph-line" d="M3 22L52 31L105 26L155 46L207 43L259 64L310 59L357 76"/><circle cx="357" cy="76" r="4"/></svg><span class="sample-note">Illustrative data. Results vary.</span></div></section>
       </div>
     </section>
-    <div class="intro-line wrap"><p>YOUR GOALS. YOUR ROUTINE. YOUR PROGRESS.</p><a href="#app" aria-label="Explore the Sculpt app"><span aria-hidden="true">↓</span></a></div>
-    <section class="product-section wrap" id="app" aria-labelledby="product-title">
-      <div class="section-intro"><p class="eyebrow">A LITTLE CLARITY GOES A LONG WAY</p><h2 id="product-title">Less noise.<br><em>More direction.</em></h2><p>Connect the dots between your goals, your training, and the work you put in.</p></div>
-      <div class="product-explorer">
-        <div class="feature-tabs" role="tablist" aria-orientation="vertical" aria-label="Explore Sculpt features">
-          <button type="button" id="tab-goals" role="tab" aria-selected="true" aria-controls="panel-goals" tabindex="0" data-tab="goals"><span class="feature-number">01</span><span>Set your direction</span><span class="tab-arrow" aria-hidden="true">↗</span></button>
-          <button type="button" id="tab-routine" role="tab" aria-selected="false" aria-controls="panel-routine" tabindex="-1" data-tab="routine"><span class="feature-number">02</span><span>Build your routine</span><span class="tab-arrow" aria-hidden="true">↗</span></button>
-          <button type="button" id="tab-progress" role="tab" aria-selected="false" aria-controls="panel-progress" tabindex="-1" data-tab="progress"><span class="feature-number">03</span><span>See your progress</span><span class="tab-arrow" aria-hidden="true">↗</span></button>
-        </div>
-        <div class="feature-panels">
-          <section id="panel-goals" class="feature-panel" role="tabpanel" aria-labelledby="tab-goals" tabindex="0">
-            <div class="feature-demo goal-demo" aria-label="Example goal settings"><p class="demo-kicker">YOUR GOALS</p><div class="demo-row"><span>Body goal</span><strong>Athletic</strong></div><div class="demo-row"><span>Target weight</span><strong>175 <small>lb</small></strong></div><div class="demo-row"><span>Focus areas</span><strong>Chest · Shoulders</strong></div><span class="demo-footnote">Illustrative settings</span></div>
-            <div class="feature-copy"><h3>Start with you.</h3><p>Choose a body goal, set a target weight, and pick the muscles you want to focus on. Your direction is personal.</p></div>
-          </section>
-          <section id="panel-routine" class="feature-panel" role="tabpanel" aria-labelledby="tab-routine" tabindex="0" hidden>
-            <div class="feature-demo routine-demo" aria-label="Example training week"><p class="demo-kicker">YOUR TRAINING WEEK</p><div class="week"><span>M</span><span class="training-day">T</span><span>W</span><span class="training-day">T</span><span>F</span><span class="training-day">S</span><span>S</span></div><div class="demo-row"><span>Today's focus</span><strong>Upper body</strong></div><div class="exercise-row"><span class="exercise-mark" aria-hidden="true">↗</span><div><strong>Incline dumbbell press</strong><span>Keep your next session in view</span></div></div><span class="demo-footnote">Illustrative routine</span></div>
-            <div class="feature-copy"><h3>Give each session purpose.</h3><p>Plan around your training days and focus areas. Keep your routine and exercise weights in one place.</p></div>
-          </section>
-          <section id="panel-progress" class="feature-panel" role="tabpanel" aria-labelledby="tab-progress" tabindex="0" hidden>
-            <div class="feature-demo progress-demo" aria-label="Example weight history"><p class="demo-kicker">THE BIGGER PICTURE</p><div class="chart-heading"><strong>Weight history</strong><span>8 weeks</span></div><svg class="progress-chart" viewBox="0 0 360 112" role="img" aria-label="Illustrative weight trend, not a promised result"><path class="chart-grid" d="M0 22H360M0 57H360M0 92H360"/><path class="chart-path" d="M8 25L54 38L100 32L148 61L195 53L244 76L291 71L350 87"/><circle cx="350" cy="87" r="5"/></svg><div class="chart-labels"><span>Week 1</span><span>Week 8</span></div><span class="demo-footnote">Illustrative data. Results vary.</span></div>
-            <div class="feature-copy"><h3>Keep the bigger picture.</h3><p>Follow your weight history and saved scan insights over time. See where you've been as you work toward what's next.</p></div>
-          </section>
-        </div>
-      </div>
-    </section>
-    <section class="approach" id="approach" aria-labelledby="approach-title">
-      <div class="wrap approach-inner"><div><p class="eyebrow">THE SCULPT APPROACH</p><h2 id="approach-title">A work<br><em>in progress.</em></h2></div><div class="approach-copy"><p class="approach-lead">And that's a good thing.</p><p>Fitness is personal. Sculpt brings your goals, routine, and progress into one place, so you can keep showing up with intention.</p><p class="wellness-note">Built for adults. AI-assisted insights are estimates, not medical measurements or advice.</p></div></div>
-    </section>
-    <section class="launch-section wrap" aria-labelledby="launch-title"><p class="eyebrow">YOUR NEXT CHAPTER</p><h2 id="launch-title">Something good<br><em>is taking shape.</em></h2><p>Sculpt is coming soon to iPhone.</p><span class="button launch-pill"><span class="status-dot" aria-hidden="true"></span> Coming soon on iOS</span><a class="quiet-link" href="mailto:sculpt.app.support@gmail.com">Say hello <span aria-hidden="true">↗</span></a></section>
+    <section class="philosophy" id="philosophy" aria-labelledby="philosophy-title"><canvas id="marble-canvas" class="philosophy-canvas" style="width:100%;height:100%" aria-hidden="true"></canvas><div class="frame philosophy-inner"><p class="overline">02 — THE PHILOSOPHY</p><h2 id="philosophy-title">You are always<br><em>a work in progress.</em></h2><p>Strength takes practice. Progress takes patience.<br>Sculpt brings your goals, your routine, and your progress<br class="desktop-break"> together — so you can keep showing up with intention.</p><span class="philosophy-mark" aria-hidden="true">s.</span></div></section>
+    <section class="launch frame" id="launch" aria-labelledby="launch-title"><p class="overline">03 — THE NEXT CHAPTER</p><h2 id="launch-title">Something good<br><em>is taking shape.</em></h2><p>Sculpt. Coming soon to iPhone.</p><span class="coming-soon"><span class="dot" aria-hidden="true"></span> COMING SOON ON iOS</span><a href="mailto:sculpt.app.support@gmail.com">Say hello <span aria-hidden="true">↗</span></a></section>
   </main>
-  <footer class="site-footer wrap"><a class="wordmark" href="./" aria-label="Sculpt home">sculpt.</a><p>Make progress your own.</p><div><a href="support.html">Support</a><span>© <span data-year>2026</span> Sculpt</span></div></footer>
+  <footer class="footer frame"><div class="footer-main"><a class="wordmark" href="./" aria-label="Sculpt home">sculpt.</a><p>Fitness, thoughtfully shaped.</p><div><a href="support.html">Support</a><a href="#launch">Coming soon <span aria-hidden="true">↗</span></a></div></div><div class="footer-fine"><p>For adults. AI-assisted fitness insights are estimates, not medical measurements or advice.</p><span>© <span data-year>2026</span> Sculpt</span></div></footer>
 </body>
 </html>

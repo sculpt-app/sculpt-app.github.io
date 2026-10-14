@@ -1,8 +1,49 @@
 # Sculpt website
 
-A responsive, buildless site for https://sculpt-app.github.io. Plain HTML, CSS, and a small accessible feature-tab script. All assets are local; there are no external fonts, analytics scripts, forms, or cookies.
+The default Sculpt homepage features a floating 3D iPhone on a clean white background, with subtle marble shaders in the philosophy section. The original landing-page design has been removed. The old `/marble/` URL redirects to the homepage.
 
-## Preview
+## The 3D phone
+
+`assets/iphone.glb` is an original, reusable model generated from `src/phone-model.js`: a beveled metal frame, front display, back glass, camera housing/lenses, side buttons and charging port. Three.js **0.186.1** renders it with a transparent background and studio lighting. The phone gently rotates about its vertical axis while keeping the app readable.
+
+`assets/home-screen.webp` is a real screenshot of the existing Sculpt iOS simulator build, captured on 14 October 2026 using an isolated iPhone 17 Pro simulator and the app's synthetic `--ui-testing --test-premium-fixture --test-body-review` flags. It contains no real account or health data. It shows the Body home page, not a recreated marketing concept. A future approved screenshot can replace this file and be rebuilt into the bundle.
+
+The model and screenshot are embedded in the classic-script phone bundle so the 3D preview also works from `file://`, without cross-origin requests. The standalone source assets remain in the repository for reuse. The captured screen already includes its Dynamic Island, so the separate model island is hidden when the screenshot is applied.
+
+- WebGL rendering is capped at a 1.5 device-pixel ratio and 30 rendered frames per second.
+- The Motion control pauses/resumes the phone and the optional marble effect.
+- Reduced motion gives a static 3D phone, with animation disabled.
+- Rendering pauses while the page is hidden or the phone is outside the viewport.
+- A static phone with the same real screenshot appears immediately and remains if WebGL or loading fails.
+- Resources are released on unload; back-forward cache restoration resumes appropriately.
+- `/?motion=off` shows the 3D phone without automatic rotation and skips the marble effect.
+
+## Shader implementation
+
+A subtle **Marble** texture nested inside **FilmGrain** enhances the full-width philosophy section, using the original `createShader` API from [shader-effects-inc/shaders](https://github.com/shader-effects-inc/shaders), pinned to **4.0.4**. It no longer lives in a hero image box. Telemetry is explicitly disabled. All runtime files are served locally.
+
+The shader script is loaded only as its section approaches the viewport, when WebGPU exists and reduced motion isn't requested. A plain background handles unsupported browsers, failed GPU initialization and reduced-motion preferences.
+
+The JavaScript entry in shaders 4.0.4 registers the entire 200+ component catalog. `build.mjs` limits the catalog to Marble and FilmGrain while retaining the upstream renderer and API. This adapter is pinned to the release's registry export contract; test WebGPU initialization and fallback when upgrading.
+
+MIT notices are preserved in `assets/SHADERS-LICENSE.txt`, `assets/THREE-LICENSE.txt`, and adjacent generated notices.
+
+## Rebuild the committed assets
+
+From this folder:
+
+```sh
+npm ci
+npm run build
+```
+
+This regenerates the GLB model and the self-contained phone and shader bundles. Commit the generated assets after source/texture changes. GitHub Pages serves these files directly and does not need Node or npm. `node_modules` is ignored by the root repository.
+
+## Content
+
+The confirmed support email and Coming soon on iOS status are retained. Demo data is labeled; no fake App Store link, signup form, testimonials or performance claims are included. Feature tabs support arrows, Home and End, with visible focus indicators. The homepage has canonical/social metadata for https://sculpt-app.github.io/ and is included in the sitemap. Legal drafts remain outside this public website; approve and publish accessible policy pages before App Store launch.
+
+## Local preview
 
 From the repository root:
 
@@ -10,31 +51,8 @@ From the repository root:
 python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
-Open http://127.0.0.1:4173. No package install or build is required.
+Open http://127.0.0.1:4173/. The phone bundle includes its assets to support direct-file previews, but automated browser QA uses HTTP.
 
 ## GitHub Pages
 
-After reviewing and pushing these files to `main`:
-
-1. Open the repository's **Settings → Pages**.
-2. Under **Build and deployment**, select **Deploy from a branch**.
-3. Choose **main**, **/ (root)**, and save.
-4. The site will be available at **https://sculpt-app.github.io/** once GitHub completes deployment.
-
-`.nojekyll` disables unnecessary Jekyll processing. The site also includes a custom 404 page, sitemap, favicon, and social preview image. No custom-domain configuration is assumed.
-
-## Content updates
-
-- **Launch:** replace the coming-soon labels with the confirmed App Store link and official badge when released. Update the support FAQ and description at the same time.
-- **Email:** the public support contact is `sculpt.app.support@gmail.com` in both pages.
-- **Legal:** the legal PDFs prepared separately are still drafts. Before App Store launch, complete and approve them, add accessible HTML privacy/consumer-health/terms pages, and link them in the footer and app. Drafts have deliberately not been copied into this public repository.
-- **Preview:** the illustrated app screen, goal values, routine, and weight chart are presentation concepts, not screenshots or promised results. Replace them with approved app screenshots when available.
-- **Assets:** `assets/body-goal.webp` is sourced from Sculpt's existing onboarding body model image. Confirm the model's license covers public marketing before publishing. The wordmark and favicon are website typography/vector assets, not a replacement for the app's final logo.
-
-## Accessibility
-
-Semantic landmarks, a skip link, keyboard-operable tabs (arrows, Home, End), visible focus states, native support accordions, reduced-motion support, and responsive layouts. Features and links should be checked after substantive content changes.
-
-## Marble alternative
-
-A separate, white-marble gallery direction lives at [`marble/`](marble/README.md). Preview `/marble/` alongside the original home page. Its WebGPU effect bundle is checked in, so GitHub Pages needs no build step. It is intentionally excluded from search indexing while it is an alternative design.
+Set **Settings → Pages → Deploy from a branch → main → / (root)**. The checked-in site is buildless at deployment time. `.nojekyll` disables Jekyll processing. Hosting URL: https://sculpt-app.github.io/.

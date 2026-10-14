@@ -24,7 +24,8 @@ for (const tab of tabs) {
 for (const year of document.querySelectorAll('[data-year]')) year.textContent = new Date().getFullYear();
 // Marble is restricted to the philosophy section and never blocks content.
 const motionDisabled = new URLSearchParams(location.search).get('motion') === 'off';
-if (!motionDisabled && !matchMedia('(prefers-reduced-motion: reduce)').matches && navigator.gpu) {
+const philosophy = document.querySelector('.philosophy');
+if (philosophy && !motionDisabled && !matchMedia('(prefers-reduced-motion: reduce)').matches && navigator.gpu) {
   const load = () => {
     const effect = document.createElement('script');
     effect.src = 'assets/effects.js';
@@ -36,5 +37,5 @@ if (!motionDisabled && !matchMedia('(prefers-reduced-motion: reduce)').matches &
     if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1800 });
     else setTimeout(load, 100);
   }, { rootMargin: '300px' });
-  approaching.observe(document.querySelector('.philosophy'));
+  approaching.observe(philosophy);
 }
