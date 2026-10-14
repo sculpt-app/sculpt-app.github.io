@@ -34,3 +34,7 @@ After reviewing and pushing these files to `main`:
 ## Accessibility
 
 Semantic landmarks, a skip link, keyboard-operable tabs (arrows, Home, End), visible focus states, native support accordions, reduced-motion support, and responsive layouts. Features and links should be checked after substantive content changes.
+
+## Marble alternative
+
+A separate, white-marble gallery direction lives at [`marble/`](marble/README.md). Preview `/marble/` alongside the original home page. Its WebGPU effect bundle is checked in, so GitHub Pages needs no build step. It is intentionally excluded from search indexing while it is an alternative design.

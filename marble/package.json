@@ -1,0 +1,15 @@
+{
+  "name": "sculpt-marble-alternative",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build-phone.mjs && node build.mjs"
+  },
+  "dependencies": {
+    "shaders": "4.0.4",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}
