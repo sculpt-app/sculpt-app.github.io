@@ -41,7 +41,7 @@ This regenerates the GLB model and the self-contained phone and shader bundles. 
 
 ## Content
 
-The confirmed support email and Coming soon on iOS status are retained. Demo data is labeled; no fake App Store link, signup form, testimonials or performance claims are included. Feature tabs support arrows, Home and End, with visible focus indicators. The homepage has canonical/social metadata for https://sculpt-app.github.io/ and is included in the sitemap. Legal drafts remain outside this public website; approve and publish accessible policy pages before App Store launch.
+The confirmed support email and Coming soon on iOS status are retained. Demo data is labeled; no fake App Store link, signup form, testimonials or performance claims are included. Feature tabs support arrows, Home and End, with visible focus indicators. The homepage has canonical/social metadata for https://sculpt-app.github.io/ and is included in the sitemap. Public privacy, consumer-health and terms pages are linked from the footer and include PDF downloads. Internal audit and operational documents are not published here.
 
 ## Local preview
 
@@ -56,3 +56,7 @@ Open http://127.0.0.1:4173/. The phone bundle includes its assets to support dir
 ## GitHub Pages
 
 Set **Settings → Pages → Deploy from a branch → main → / (root)**. The checked-in site is buildless at deployment time. `.nojekyll` disables Jekyll processing. Hosting URL: https://sculpt-app.github.io/.
+
+## Legal documents
+
+Edit `legal/privacy.md`, `legal/consumer-health.md`, and `legal/terms.md`, then run `python3 scripts/build-legal.py` with `reportlab` and `pypdf` installed. Commit the generated HTML and PDF files alongside the sources. The effective date must reflect the approved publication version. The generator does not publish internal assessment documents.

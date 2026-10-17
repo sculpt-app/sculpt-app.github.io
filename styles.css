@@ -35,3 +35,11 @@ summary{cursor:pointer;display:flex;align-items:center;justify-content:space-bet
 details p{font-size:13px;line-height:1.8;color:var(--muted);max-width:620px;margin-top:18px}details a{text-decoration:underline;text-underline-offset:3px}summary:focus-visible{outline:2px solid var(--ink);outline-offset:7px}
 .support-note{font-size:11px;line-height:1.7;color:var(--muted);margin-top:30px}
 @media(max-width:800px){.support-main{padding-block:45px 70px}.support-main h1{font-size:62px;letter-spacing:-2px}.contact-block{margin-block:35px 50px}.support-lead{font-size:15px}.support-main h2{font-size:28px}.contact-block a{font-size:18px}}
+
+.footer-legal{display:flex;flex-wrap:wrap;gap:4px 22px;margin-top:22px;font-size:11px;line-height:1.5;color:var(--muted)}
+.footer-legal a{display:inline-flex;align-items:center;min-height:32px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.legal-main{max-width:790px;padding-block:65px 90px}.legal-main>.overline{color:var(--muted);margin-bottom:18px}.legal-main h1{font-size:clamp(38px,5vw,62px);line-height:1.08;letter-spacing:-1.8px;overflow-wrap:break-word}
+.legal-download{display:inline-flex;gap:18px;align-items:center;font-size:12px;margin-block:22px 32px;padding-block:8px;border-bottom:1px solid var(--line)}
+.legal-copy{font-size:15px;line-height:1.85;overflow-wrap:anywhere}.legal-copy p{margin-bottom:18px}.legal-copy h2{font-family:var(--sans);font-size:19px;font-weight:500;line-height:1.4;margin:35px 0 16px}.legal-copy ul{padding-left:23px;margin:0 0 20px}.legal-copy li{padding-left:4px;margin-bottom:10px}.legal-copy a{text-decoration:underline;text-underline-offset:3px}.legal-copy>p:first-child{font-size:12px;color:var(--muted);margin-bottom:22px}
+@media(max-width:800px){.legal-main{padding-block:42px 65px}.legal-copy{font-size:14px}.footer-legal{gap:4px 18px}.footer-legal a{min-height:44px}}
+@media print{.header,.footer,.skip-link,.legal-download{display:none}.legal-main{width:100%;max-width:none;padding:0}.legal-copy{font-size:11pt;line-height:1.5}.legal-copy h2{break-after:avoid}body{background:white;color:black}}
