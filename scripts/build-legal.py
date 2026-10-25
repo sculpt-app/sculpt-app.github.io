@@ -1,12 +1,17 @@
 """Build the public legal pages and PDFs from the matching Markdown sources."""
 import argparse
 import html
+import json
 import re
 import shutil
+from functools import partial
 from pathlib import Path
 
+import reportlab
 from reportlab.lib import colors
 from reportlab.lib.styles import ParagraphStyle
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Paragraph, SimpleDocTemplate
 from pypdf import PdfReader, PdfWriter
@@ -19,6 +24,28 @@ DOCUMENTS = [
     ('terms', 'Terms of Use', 'terms-of-use.pdf'),
 ]
 LEGAL_NAV = '<nav class="footer-legal" aria-label="Legal"><a href="privacy.html">Privacy Policy</a><a href="consumer-health.html">Consumer Health Data</a><a href="terms.html">Terms of Use</a></nav>'
+
+
+def sync_app_privacy(path):
+    """Copy the app's disclosure, retaining the website-specific notices."""
+    paragraphs = json.loads(path.read_text())['privacy']
+    title = re.fullmatch(r'\*\*Sculpt Privacy Policy — (.+)\*\*', paragraphs[0])
+    if not title:
+        raise ValueError('The app privacy policy needs a dated title.')
+    old_source = (ROOT / 'legal/privacy.md').read_text()
+    operator = next(block for block in re.split(r'\n\s*\n', old_source)
+                    if block.startswith('Sculpt is operated by '))
+    result = ['# Privacy Policy', f'Effective date: {title[1]}', operator, paragraphs[1]]
+    for paragraph in paragraphs[2:]:
+        section = re.fullmatch(r'\*\*(.+?)\*\*\s+(.+)', paragraph)
+        if not section:
+            raise ValueError('An app privacy section is missing its heading.')
+        result += ['## ' + section[1].rstrip('.'), section[2]]
+    website_sections = re.split(r'^##\s+(?:\d+\.\s+)?(.+)\n', old_source, flags=re.M)
+    for heading, body in zip(website_sections[1::2], website_sections[2::2]):
+        if heading in {'Website visits', 'Your privacy rights', 'Legal bases and international processing'}:
+            result += ['## ' + heading, body.strip()]
+    (ROOT / 'legal/privacy.md').write_text('\n\n'.join(result) + '\n')
 
 
 def inline(text, pdf=False):
@@ -62,7 +89,9 @@ def webpage(slug, title, pdf_name, contents):
   <title>{title} — Sculpt</title>
   <meta name="description" content="Read Sculpt's {html.escape(title.lower())}, including contact details for support and privacy requests.">
   <link rel="canonical" href="{BASE}{slug}.html">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png?v=20261025" type="image/png" sizes="32x32">
+  <link rel="icon" href="favicon.ico?v=20261025" sizes="any">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -83,9 +112,10 @@ def webpage(slug, title, pdf_name, contents):
 
 
 class PageCanvas(canvas.Canvas):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, effective_date, **kwargs):
         super().__init__(*args, **kwargs)
         self.states = []
+        self.effective_date = effective_date
 
     def showPage(self):
         self.states.append(dict(self.__dict__))
@@ -98,18 +128,27 @@ class PageCanvas(canvas.Canvas):
             self.setStrokeColor(colors.HexColor('#D8E1DE'))
             self.setLineWidth(.5)
             self.line(50, 38, 562, 38)
-            self.setFont('Helvetica', 8)
+            self.setFont('SculptBody', 8)
             self.setFillColor(colors.HexColor('#647477'))
-            self.drawString(50, 25, 'Sculpt | Effective October 16, 2026')
+            self.drawString(50, 25, f'Sculpt | Effective {self.effective_date}')
             self.drawRightString(562, 25, f'{self._pageNumber} / {total}')
             super().showPage()
         super().save()
 
 
 def pdf_document(path, title, contents):
-    body = ParagraphStyle('body', fontName='Helvetica', fontSize=10.2, leading=14.6, textColor=colors.HexColor('#243235'), spaceAfter=8)
-    heading = ParagraphStyle('heading', parent=body, fontName='Helvetica-Bold', fontSize=12, leading=16, textColor=colors.HexColor('#365F5D'), spaceBefore=12, keepWithNext=True)
-    title_style = ParagraphStyle('title', parent=body, fontName='Helvetica-Bold', fontSize=27, leading=32, spaceAfter=16, keepWithNext=True)
+    # Embed a Unicode font for the app's navigation arrows on macOS and Linux.
+    candidates = [
+        (Path('/System/Library/Fonts/Supplemental/Arial.ttf'), Path('/System/Library/Fonts/Supplemental/Arial Bold.ttf')),
+        (Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'), Path('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf')),
+        (Path(reportlab.__file__).parent / 'fonts/Vera.ttf', Path(reportlab.__file__).parent / 'fonts/VeraBd.ttf'),
+    ]
+    regular, bold = next(pair for pair in candidates if all(path.exists() for path in pair))
+    pdfmetrics.registerFont(TTFont('SculptBody', str(regular)))
+    pdfmetrics.registerFont(TTFont('SculptBold', str(bold)))
+    body = ParagraphStyle('body', fontName='SculptBody', fontSize=10.2, leading=14.6, textColor=colors.HexColor('#243235'), spaceAfter=8)
+    heading = ParagraphStyle('heading', parent=body, fontName='SculptBold', fontSize=12, leading=16, textColor=colors.HexColor('#365F5D'), spaceBefore=12, keepWithNext=True)
+    title_style = ParagraphStyle('title', parent=body, fontName='SculptBold', fontSize=27, leading=32, spaceAfter=16, keepWithNext=True)
     bullet = ParagraphStyle('bullet', parent=body, leftIndent=11, firstLineIndent=-11, spaceAfter=5)
     story = [Paragraph(title, title_style)]
     for kind, text in contents:
@@ -121,25 +160,34 @@ def pdf_document(path, title, contents):
             story.append(Paragraph(inline(text, True), body))
 
     def header(c, _):
-        c.setFont('Helvetica-Bold', 10)
+        c.setFont('SculptBold', 10)
         c.setFillColor(colors.HexColor('#365F5D'))
         c.drawString(50, 763, 'SCULPT')
-        c.setFont('Helvetica', 8)
+        c.setFont('SculptBody', 8)
         c.drawRightString(562, 763, title)
         c.setStrokeColor(colors.HexColor('#D8E1DE'))
         c.line(50, 752, 562, 752)
 
     doc = SimpleDocTemplate(str(path), pagesize=(612, 792), leftMargin=50, rightMargin=50, topMargin=58, bottomMargin=53, title=f'Sculpt - {title}', author='Jacob Lagesse')
-    doc.build(story, onFirstPage=header, onLaterPages=header, canvasmaker=PageCanvas)
+    effective_date = next(text.removeprefix('Effective date: ') for kind, text in contents
+                          if kind == 'paragraph' and text.startswith('Effective date: '))
+    doc.build(story, onFirstPage=header, onLaterPages=header,
+              canvasmaker=partial(PageCanvas, effective_date=effective_date))
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output-dir', type=Path)
+    parser.add_argument('--document', choices=[item[0] for item in DOCUMENTS], action='append')
+    parser.add_argument('--app-privacy', type=Path, help='Sync the privacy policy from the app legal.json first.')
     args = parser.parse_args()
+    if args.app_privacy:
+        sync_app_privacy(args.app_privacy)
     writer = PdfWriter()
     offset = 0
     for slug, title, pdf_name in DOCUMENTS:
+        if args.document and slug not in args.document:
+            continue
         source = (ROOT / 'legal' / f'{slug}.md').read_text()
         contents = list(blocks(source))
         (ROOT / f'{slug}.html').write_text(webpage(slug, title, pdf_name, contents))

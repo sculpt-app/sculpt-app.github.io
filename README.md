@@ -60,3 +60,14 @@ Set **Settings → Pages → Deploy from a branch → main → / (root)**. The c
 ## Legal documents
 
 Edit `legal/privacy.md`, `legal/consumer-health.md`, and `legal/terms.md`, then run `python3 scripts/build-legal.py` with `reportlab` and `pypdf` installed. Commit the generated HTML and PDF files alongside the sources. The effective date must reflect the approved publication version. The generator does not publish internal assessment documents.
+
+
+### Sync the app privacy policy
+
+The public policy copies the app's dated privacy disclosure from `Resources/Legal/legal.json`, retaining the website's operator details, website-visit notice, privacy-rights and international-processing sections. To sync a new app version without rebuilding the other policy PDFs:
+
+```sh
+python3 scripts/build-legal.py --document privacy --app-privacy /path/to/body-ai/Resources/Legal/legal.json
+```
+
+PDF footers use each document's own effective date. The site favicon, ICO fallback and Apple touch icon are resized exports of the current iOS `AppIcon.png`; favicon references include a version to refresh browser caches.
