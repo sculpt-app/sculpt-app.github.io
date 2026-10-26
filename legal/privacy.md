@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Effective date: October 25, 2026
+Effective date: October 26, 2026
 
 Sculpt is operated by Jacob Lagesse, based in California, USA. This policy covers the Sculpt app, website and related support. For privacy questions or requests, email [sculpt.app.support@gmail.com](mailto:sculpt.app.support@gmail.com) or write to Jacob Lagesse, 655 Bonanza Ct, Sunnyvale, CA 94087, USA.
 
@@ -12,7 +12,7 @@ Supabase processes your account identifier, sign-in details, questionnaire answe
 
 ## Body scan photos and AI
 
-Full body scan photos are stored privately on your device, excluded from backups and app exports. Before upload, Sculpt crops above the shoulders, masks any detected faces remaining in the crop and removes photo metadata. With your explicit permission, cropped photos and relevant age, gender, height, weight, activity, physique goals, approximate outline dimensions, saved scan results and recent workout history are sent through Supabase to OpenAI for photo guidance and analysis. AI workout generation uses your selected days and duration, goals, training experience, muscle preferences, comparable historical muscle scores and trends, recent exercise performance and preferences, and relevant exercise catalog entries. Generating a new routine from these inputs does not upload photos; importing an existing routine sends images as described below. Sculpt does not add your name, email or full birth date to these AI prompts. Photo cropping reduces identifiability but cannot guarantee anonymity.
+Full body scan photos are stored privately on your device, excluded from backups and app exports. Before upload, Sculpt crops above the shoulders, masks any detected faces remaining in the crop and removes photo metadata. With your explicit permission, cropped photos and relevant age, gender, height, weight, activity, physique goals, approximate outline dimensions, saved scan results and recent workout history are sent through Supabase to OpenAI for photo guidance and analysis. AI workout generation uses your selected days and duration, goals, training experience, muscle preferences, comparable historical muscle scores and trends, recent exercise performance (including summaries of logged exercise weights in kilograms, sets, repetitions and workout completion) and preferences, and relevant exercise catalog entries. Generating a new routine from these inputs does not upload photos; importing an existing routine sends images as described below. Sculpt does not add your name, email or full birth date to these AI prompts. Photo cropping reduces identifiability but cannot guarantee anonymity.
 
 ## Importing workout routines
 

@@ -1,6 +1,6 @@
 # Consumer Health Data Privacy Notice
 
-Effective date: October 16, 2026
+Effective date: October 26, 2026
 
 This notice supplements the [Privacy Policy](https://sculpt-app.github.io/privacy.html) and explains how Sculpt handles consumer health data, including where consumer-health privacy laws apply. Sculpt is operated by Jacob Lagesse, 655 Bonanza Ct, Sunnyvale, CA 94087, USA. Contact: [sculpt.app.support@gmail.com](mailto:sculpt.app.support@gmail.com).
 
@@ -24,7 +24,9 @@ We use these categories to save your measurements and goals, assess photo framin
 
 Supabase provides authentication, database and backend processing. It handles stored profile and goal fields, structured scan results, weight and routine records, and temporary processing of AI requests.
 
-OpenAI processes cropped or masked body photos and selected profile and measurement context for photo checks and scan reviews. For routine generation it receives selected training days, focus areas, saved muscle-score context and eligible exercise information. The routine input excludes names, email addresses, account identifiers, photos and exercise weights.
+OpenAI processes cropped or masked body photos and selected profile and measurement context for photo checks and scan reviews.
+
+For AI workout routine generation, OpenAI receives selected training days and workout duration, physique goals and training experience, muscle preferences and exclusions, available-equipment preferences, saved muscle-score context and comparable scan trends, eligible exercise information, and recent workout-performance and exercise-preference context. Workout-performance context includes summaries of logged exercise weights in kilograms, sets, repetitions and workout completion when available. Sculpt does not add your name, email address or account identifier to the routine-generation prompt. Generating a new routine does not upload body photos. Routine-photo imports send selected images; see the Privacy Policy.
 
 Authorized personnel and service providers may access limited information when needed for support, security, deletion or legal obligations. If you send health information to our support email, Google processes that message as our email provider. Please do not send body photos by email. Professional advisers or authorities may receive information when necessary and legally permitted or required.
 
