@@ -146,7 +146,7 @@ def pdf_document(path, title, contents):
     regular, bold = next(pair for pair in candidates if all(path.exists() for path in pair))
     pdfmetrics.registerFont(TTFont('SculptBody', str(regular)))
     pdfmetrics.registerFont(TTFont('SculptBold', str(bold)))
-    body = ParagraphStyle('body', fontName='SculptBody', fontSize=10.2, leading=14.6, textColor=colors.HexColor('#243235'), spaceAfter=8)
+    body = ParagraphStyle('body', fontName='SculptBody', fontSize=10.2, leading=14.6, textColor=colors.HexColor('#243235'), spaceAfter=8, allowWidows=0, allowOrphans=0)
     heading = ParagraphStyle('heading', parent=body, fontName='SculptBold', fontSize=12, leading=16, textColor=colors.HexColor('#365F5D'), spaceBefore=12, keepWithNext=True)
     title_style = ParagraphStyle('title', parent=body, fontName='SculptBold', fontSize=27, leading=32, spaceAfter=16, keepWithNext=True)
     bullet = ParagraphStyle('bullet', parent=body, leftIndent=11, firstLineIndent=-11, spaceAfter=5)

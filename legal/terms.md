@@ -1,6 +1,6 @@
 # Terms of Use
 
-Effective date: October 16, 2026
+Effective date: October 27, 2026
 
 These Terms govern the Sculpt website and app services provided by Jacob Lagesse, 655 Bonanza Ct, Sunnyvale, CA 94087, USA. For support, contact [sculpt.app.support@gmail.com](mailto:sculpt.app.support@gmail.com). Read these Terms with our [Privacy Policy](https://sculpt-app.github.io/privacy.html), [Consumer Health Data Privacy Notice](https://sculpt-app.github.io/consumer-health.html) and the software license that applies to your App Store download.
 
@@ -33,6 +33,8 @@ OpenAI processes requested scan and routine inputs through our backend. AI outpu
 The purchase screen displays the subscription's price, duration, included features and any trial or introductory terms. Apple processes App Store purchases under the purchase terms shown to you. Auto-renewing subscriptions continue and renew at the applicable price unless cancelled under those terms. Price changes are subject to required notice and consent rules.
 
 Manage or cancel an App Store subscription through your Apple account. Deleting Sculpt, logging out, clearing local data or deleting your Sculpt account does not automatically cancel Apple billing. Restore purchases through the app where available. Refunds are handled through Apple's applicable process and your mandatory consumer rights. Nothing in these Terms removes a refund or other remedy required by law.
+
+Food photo analysis is limited to 100 started analyses per account across all devices in any rolling seven-day period. Re-analysis and attempts that later fail count once started; rejected requests do not consume photo allowance. Availability returns as earlier attempts leave that window. Barcode lookups have a separate limit of 100 per rolling 24 hours. Manual food entries and edits do not use photo allowance. These limits are separate from body-scan and AI-routine allowances. The app displays food photo availability and the next availability time when the limit is reached.
 
 ## 6. Acceptable use
 
