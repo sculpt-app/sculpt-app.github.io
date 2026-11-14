@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://sculpt-app.github.io/sitemap.xml
+Sitemap: https://www.sculpt-fit.app/sitemap.xml

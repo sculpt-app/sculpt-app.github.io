@@ -1,6 +1,9 @@
 'use strict';
+
+// Feature content remains readable without JavaScript. Enhance it into tabs.
+const tablist = document.querySelector('[role="tablist"]');
 const tabs = [...document.querySelectorAll('[role="tab"]')];
-function select(tab, focus = false) {
+function selectTab(tab, focus = false) {
   for (const item of tabs) {
     const active = item === tab;
     item.setAttribute('aria-selected', String(active));
@@ -9,33 +12,29 @@ function select(tab, focus = false) {
   }
   if (focus) tab.focus();
 }
-for (const tab of tabs) {
-  tab.addEventListener('click', () => select(tab));
-  tab.addEventListener('keydown', event => {
-    const index = tabs.indexOf(tab);
-    let next;
-    if (['ArrowDown', 'ArrowRight'].includes(event.key)) next = (index + 1) % tabs.length;
-    if (['ArrowUp', 'ArrowLeft'].includes(event.key)) next = (index + tabs.length - 1) % tabs.length;
-    if (event.key === 'Home') next = 0;
-    if (event.key === 'End') next = tabs.length - 1;
-    if (next !== undefined) { event.preventDefault(); select(tabs[next], true); }
-  });
+if (tablist && tabs.length) {
+  for (const tab of tabs) {
+    const panel = document.getElementById(tab.getAttribute('aria-controls'));
+    panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('aria-labelledby', tab.id);
+    panel.tabIndex = 0;
+    tab.addEventListener('click', () => selectTab(tab));
+    tab.addEventListener('keydown', event => {
+      const index = tabs.indexOf(tab);
+      let next;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+      if (event.key === 'Home') next = 0;
+      if (event.key === 'End') next = tabs.length - 1;
+      if (next !== undefined) {
+        event.preventDefault();
+        selectTab(tabs[next], true);
+      }
+    });
+  }
+  selectTab(tabs[0]);
+  tablist.hidden = false;
 }
-for (const year of document.querySelectorAll('[data-year]')) year.textContent = new Date().getFullYear();
-// Marble is restricted to the philosophy section and never blocks content.
-const motionDisabled = new URLSearchParams(location.search).get('motion') === 'off';
-const philosophy = document.querySelector('.philosophy');
-if (philosophy && !motionDisabled && !matchMedia('(prefers-reduced-motion: reduce)').matches && navigator.gpu) {
-  const load = () => {
-    const effect = document.createElement('script');
-    effect.src = 'assets/effects.js';
-    document.head.appendChild(effect);
-  };
-  const approaching = new IntersectionObserver(entries => {
-    if (!entries[0].isIntersecting) return;
-    approaching.disconnect();
-    if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1800 });
-    else setTimeout(load, 100);
-  }, { rootMargin: '300px' });
-  approaching.observe(philosophy);
+for (const year of document.querySelectorAll('[data-year]')) {
+  year.textContent = new Date().getFullYear();
 }

@@ -17,7 +17,7 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate
 from pypdf import PdfReader, PdfWriter
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = 'https://sculpt-app.github.io/'
+BASE = 'https://www.sculpt-fit.app/'
 DOCUMENTS = [
     ('privacy', 'Privacy Policy', 'privacy-policy.pdf'),
     ('consumer-health', 'Consumer Health Data Privacy Notice', 'consumer-health-data-notice.pdf'),
@@ -96,7 +96,7 @@ def webpage(slug, title, pdf_name, contents):
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="header frame"><a class="wordmark" href="./" aria-label="Sculpt home">sculpt.</a><nav aria-label="Main navigation"><a href="./">Home</a><a href="support.html">Support</a></nav></header>
+  <header class="header frame"><a class="wordmark" href="./" aria-label="Sculpt home">sculpt</a><nav aria-label="Main navigation"><a href="./">Home</a><a href="support.html">Support</a></nav></header>
   <main id="main" class="legal-main frame">
     <p class="overline">SCULPT / LEGAL</p>
     <h1>{title}</h1>
@@ -105,7 +105,7 @@ def webpage(slug, title, pdf_name, contents):
       {chr(10).join(body)}
     </article>
   </main>
-  <footer class="footer frame"><div class="footer-main"><a class="wordmark" href="./" aria-label="Sculpt home">sculpt.</a><p>Fitness, thoughtfully shaped.</p><div><a href="support.html">Support</a></div></div>{LEGAL_NAV}<div class="footer-fine"><p>For adults. AI-assisted fitness insights are estimates, not medical measurements or advice.</p><span>© 2026 Sculpt</span></div></footer>
+  <footer class="footer frame"><div class="footer-main"><a class="wordmark" href="./" aria-label="Sculpt home">sculpt</a><p>Your body. Your plan. Your progress.</p><div><a href="support.html">Support</a></div></div>{LEGAL_NAV}<div class="footer-fine"><p>For adults. AI-assisted fitness insights are estimates, not medical measurements or advice.</p><span>© 2026 Sculpt</span></div></footer>
 </body>
 </html>
 '''
