@@ -76,7 +76,7 @@ def webpage(slug, title, pdf_name, contents):
     body = []
     for kind, text in contents:
         if kind == 'heading':
-            body.append(f'<h2>{inline(text)}</h2>')
+            body.append(f'<h2 id="website-visits">{inline(text)}</h2>' if text == 'Website visits' else f'<h2>{inline(text)}</h2>')
         elif kind == 'list':
             body.append('<ul>' + ''.join(f'<li>{inline(item)}</li>' for item in text) + '</ul>')
         else:
@@ -93,6 +93,8 @@ def webpage(slug, title, pdf_name, contents):
   <link rel="icon" href="favicon.ico?v=20261025" sizes="any">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180">
   <link rel="stylesheet" href="styles.css">
+  <script src="/analytics-config.js" defer></script>
+  <script src="/analytics.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>

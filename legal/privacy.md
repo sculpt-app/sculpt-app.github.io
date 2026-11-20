@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Effective date: October 27, 2026
+Effective date: November 19, 2026
 
 Sculpt is operated by Jacob Lagesse, based in California, USA. This policy covers the Sculpt app, website and related support. For privacy questions or requests, email [sculpt.app.support@gmail.com](mailto:sculpt.app.support@gmail.com) or write to Jacob Lagesse, 655 Bonanza Ct, Sunnyvale, CA 94087, USA.
 
@@ -64,7 +64,7 @@ For support, privacy requests or questions about this policy, email [sculpt.app.
 
 ## Website visits
 
-The public website has no account form or advertising trackers added by Sculpt. GitHub Pages may process your IP address and ordinary request information to serve and secure the site, as described in [GitHub's privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). Emailing support sends your message through your email provider and our Google-hosted mailbox. External links lead to services with their own privacy practices.
+When enabled, the public website automatically uses Google Analytics 4 to measure page visits, referral and campaign sources, approximate location, browser/device information, and clicks leading to Sculpt's App Store listing. Google Analytics uses cookies to distinguish visits; this integration sets a cookie lifetime of 180 days. The website does not display an analytics consent prompt or provide an analytics preferences control. Browser privacy settings and blocking tools can limit collection. Analytics reports are pseudonymous statistics, not a directory of named visitors. Sculpt does not send names, email addresses, Sculpt account identifiers, or app health data through this website integration, and disables Google signals and advertising personalization. The website has no account form. See [Google's privacy policy](https://policies.google.com/privacy) and [how Google uses information from sites that use its services](https://policies.google.com/technologies/partner-sites). GitHub Pages may process your IP address and ordinary request information to serve and secure the site, as described in [GitHub's privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). Emailing support sends your message through your email provider and our Google-hosted mailbox. External links lead to services with their own privacy practices.
 
 ## Your privacy rights
 
